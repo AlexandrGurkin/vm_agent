@@ -1,0 +1,55 @@
+swagger: '2.0'
+info:
+  title: Template for http server
+  description: API for test server
+  version: 1.0.0
+host: localhost:8000
+schemes:
+  - http
+produces:
+  - application/json
+consumes:
+  - application/json
+basePath: "/api/v1"
+paths:
+  /version:
+    get:
+      summary: Get version of server
+      tags:
+        - version
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/Response.Version"
+
+definitions:
+
+  Response.Version:
+    title: Version response
+    type: object
+    properties:
+      version:
+        type: string
+        example: v1.0.0
+      branch:
+        type: string
+        example: main
+      commit:
+        type: string
+        example: 6c8d084825ef4281094bd1bf26003e9a057c3305
+      build_time:
+        type: string
+        example: 2021-03-06_22:22:44_MSK
+
+  Response.Error:
+    title: Error response
+    type: object
+    properties:
+      code:
+        type: integer
+        format: uint32
+        example: 400
+      message:
+        type: string
+        example: some error
